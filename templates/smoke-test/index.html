@@ -1,0 +1,119 @@
+<!doctype html>
+<!--
+  DVS Lab smoke-test template. Copy to site/<slug>/index.html (with an empty site/<slug>/.draft file until approved), replace every {{TOKEN}},
+  delete the sections you don't need, and keep the data-* hooks (see CLAUDE.md).
+  For an Arabic page: <html lang="ar" dir="rtl">.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>{{BRAND}} · {{HEADLINE_SHORT}}</title>
+<meta name="description" content="{{SUBHEAD}}">
+<meta property="og:title" content="{{HEADLINE}}">
+<meta property="og:description" content="{{SUBHEAD}}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500&family=Inter:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="../assets/lab.css">
+<style>
+  :root { --accent: {{ACCENT_HEX}}; }
+</style>
+</head>
+<body data-lab="{{SLUG}}">
+<div class="wrap">
+  <header class="nav">
+    <a class="brand" href="#top"><i aria-hidden="true"></i>{{BRAND}}</a>
+    <a class="btn ghost" href="#join" data-cta>{{NAV_CTA}}</a>
+  </header>
+
+  <main id="top">
+    <div class="hero">
+      <span class="eyebrow">{{EYEBROW}}</span>
+      <h1>{{HEADLINE}}</h1>
+      <p class="lede">{{SUBHEAD}}</p>
+      <div class="cta-row">
+        <a class="btn" href="#join" data-cta>{{PRIMARY_CTA}}</a>
+        <span class="note">{{CTA_NOTE}}</span>
+      </div>
+    </div>
+
+    <section aria-labelledby="problem">
+      <h2 id="problem">{{PROBLEM_TITLE}}</h2>
+      <div class="grid">
+        <div class="card"><h3>{{PAIN_1_TITLE}}</h3><p>{{PAIN_1}}</p></div>
+        <div class="card"><h3>{{PAIN_2_TITLE}}</h3><p>{{PAIN_2}}</p></div>
+        <div class="card"><h3>{{PAIN_3_TITLE}}</h3><p>{{PAIN_3}}</p></div>
+      </div>
+    </section>
+
+    <section aria-labelledby="how">
+      <h2 id="how">{{HOW_TITLE}}</h2>
+      <div class="grid">
+        <div class="card"><span class="step">STEP 1</span><h3>{{STEP_1_TITLE}}</h3><p>{{STEP_1}}</p></div>
+        <div class="card"><span class="step">STEP 2</span><h3>{{STEP_2_TITLE}}</h3><p>{{STEP_2}}</p></div>
+        <div class="card"><span class="step">STEP 3</span><h3>{{STEP_3_TITLE}}</h3><p>{{STEP_3}}</p></div>
+      </div>
+    </section>
+
+    <section aria-labelledby="price">
+      <div class="price">
+        <h2 id="price">{{PRICE_TITLE}}</h2>
+        <div class="amount">{{PRICE}}</div>
+        <div class="note">{{PRICE_NOTE}}</div>
+        <ul>
+          <li>{{INCLUDES_1}}</li>
+          <li>{{INCLUDES_2}}</li>
+          <li>{{INCLUDES_3}}</li>
+        </ul>
+        <div><a class="btn" href="#join" data-cta>{{PRIMARY_CTA}}</a></div>
+      </div>
+    </section>
+
+    <section aria-labelledby="faq">
+      <h2 id="faq">Questions</h2>
+      <details><summary>{{FAQ_1_Q}}</summary><p>{{FAQ_1_A}}</p></details>
+      <details><summary>{{FAQ_2_Q}}</summary><p>{{FAQ_2_A}}</p></details>
+      <details><summary>Is this available now?</summary><p>{{AVAILABILITY_ANSWER}}</p></details>
+    </section>
+
+    <section id="join" aria-labelledby="join-title">
+      <div class="join">
+        <div>
+          <h2 id="join-title">{{JOIN_TITLE}}</h2>
+          <p class="lede">{{JOIN_TEXT}}</p>
+        </div>
+        <div>
+          <div class="closed-banner" data-lab-closed hidden>{{CLOSED_TEXT}}</div>
+          <form data-waitlist data-lab-open novalidate>
+            <div class="field"><label for="email">Work email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+            <div class="field"><label for="name">Name</label><input id="name" name="name" autocomplete="name"></div>
+            <div class="field"><label for="company">Company</label><input id="company" name="company" autocomplete="organization"></div>
+            <div class="field">
+              <label for="q1">{{QUALIFYING_QUESTION}}</label>
+              <select id="q1" name="{{QUALIFYING_KEY}}">
+                <option value="">Choose…</option>
+                <option>{{OPTION_1}}</option>
+                <option>{{OPTION_2}}</option>
+                <option>{{OPTION_3}}</option>
+              </select>
+            </div>
+            <div class="hp" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
+            <label class="consent"><input type="checkbox" name="consent" value="yes" required><span>{{BRAND}} may email me about this. Nothing else, and I can ask to be removed at any time.</span></label>
+            <button class="btn" type="submit" data-cta>{{SUBMIT_LABEL}}</button>
+            <p class="lab-msg" data-msg></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>{{BRAND}} is an early-stage service being tested by an independent UAE studio. {{HONESTY_LINE}}</div>
+    <div>We store only what you type in the form, to contact you about this offer. Contact: {{CONTACT_EMAIL}}</div>
+  </footer>
+</div>
+<script src="../assets/lab.js" defer></script>
+</body>
+</html>

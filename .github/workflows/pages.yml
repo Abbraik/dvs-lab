@@ -1,0 +1,41 @@
+name: Deploy DVS Lab pages
+
+on:
+  push:
+    branches: [main]
+    paths: ['site/**', '.github/workflows/pages.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build the public site (drafts are never deployed)
+        run: |
+          mkdir -p _public
+          cp -R site/. _public/
+          # A test folder containing a .draft file is not approved yet: remove it from the deploy.
+          find _public -name .draft -print | while read -r marker; do
+            dir=$(dirname "$marker"); echo "Skipping draft: ${dir#_public/}"; rm -rf "$dir"
+          done
+          # Refuse to deploy a page that still has template tokens in it.
+          if grep -rIl '{{[A-Z0-9_]*}}' _public; then echo "Unfilled template tokens found"; exit 1; fi
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _public
+      - id: deployment
+        uses: actions/deploy-pages@v4
